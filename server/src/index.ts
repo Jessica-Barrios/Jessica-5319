@@ -188,7 +188,11 @@ app.get('/api/races/stats', (_req: Request, res: Response) => {
 // =============================================
 // Server startup
 // =============================================
-app.listen(PORT, () => {
-  console.log(`🐌 Snail Races Express server running on http://localhost:${PORT}`);
-  console.log(`💳 SnailPay API available at POST /api/snailpay/charge`);
-});
+if (process.env.NODE_ENV !== 'production') {
+  app.listen(PORT, () => {
+    console.log(`🐌 Snail Races Express server running on http://localhost:${PORT}`);
+    console.log(`💳 SnailPay API available at POST /api/snailpay/charge`);
+  });
+}
+
+export default app;
